@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Party Website</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="payment.css" />
     <!-- Add Font Awesome CDN -->
     <link
       rel="stylesheet"
@@ -21,6 +22,9 @@
         <button onclick="changePage('home')">Home</button>
         <button onclick="changePage('about')">About</button>
         <button onclick="changePage('products')">Products</button>
+        <button onclick="changePage('tickets')" class="active-nav">
+          Tickets
+        </button>
       </div>
     </nav>
 
@@ -54,6 +58,196 @@
         <div class="product-list" id="productList">
           <!-- Products will be dynamically added here -->
         </div>
+      </div>
+    </div>
+
+    <div id="ticketsPage" class="page active">
+      <div class="container page-content animate-entry">
+        <h2>Purchase Tickets</h2>
+
+        <!-- Ticket Selection -->
+        <div class="ticket-selection">
+          <h3>Select Your Ticket</h3>
+          <div class="tickets-container">
+            <div
+              class="ticket-card"
+              data-ticket-type="standard"
+              data-price="25.00"
+            >
+              <h4>Standard Entry</h4>
+              <p class="ticket-price">$25.00</p>
+              <ul class="ticket-features">
+                <li><i class="fas fa-check"></i> General admission</li>
+                <li><i class="fas fa-check"></i> Access to main areas</li>
+                <li><i class="fas fa-check"></i> Regular entry time</li>
+              </ul>
+              <button
+                class="select-ticket-btn"
+                onclick="selectTicket('standard', 25.00)"
+              >
+                Select
+              </button>
+            </div>
+
+            <div class="ticket-card" data-ticket-type="vip" data-price="50.00">
+              <div class="featured-badge">Popular</div>
+              <h4>VIP Experience</h4>
+              <p class="ticket-price">$50.00</p>
+              <ul class="ticket-features">
+                <li><i class="fas fa-check"></i> Priority entry</li>
+                <li><i class="fas fa-check"></i> VIP lounge access</li>
+                <li><i class="fas fa-check"></i> Complimentary drink</li>
+                <li><i class="fas fa-check"></i> Photo opportunity</li>
+              </ul>
+              <button
+                class="select-ticket-btn"
+                onclick="selectTicket('vip', 50.00)"
+              >
+                Select
+              </button>
+            </div>
+
+            <div
+              class="ticket-card"
+              data-ticket-type="premium"
+              data-price="75.00"
+            >
+              <h4>Premium Package</h4>
+              <p class="ticket-price">$75.00</p>
+              <ul class="ticket-features">
+                <li><i class="fas fa-check"></i> All VIP benefits</li>
+                <li><i class="fas fa-check"></i> Exclusive merchandise</li>
+                <li><i class="fas fa-check"></i> Reserved seating</li>
+                <li><i class="fas fa-check"></i> Meet & greet opportunity</li>
+              </ul>
+              <button
+                class="select-ticket-btn"
+                onclick="selectTicket('premium', 75.00)"
+              >
+                Select
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment Form -->
+        <form id="paymentForm" class="payment-form">
+          <div class="form-section">
+            <h3>Personal Information</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" required />
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" required />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Payment Details</h3>
+            <div class="form-group">
+              <label for="cardName">Name on Card</label>
+              <input type="text" id="cardName" name="cardName" required />
+            </div>
+
+            <div class="form-group">
+              <label for="cardNumber">Card Number</label>
+              <div class="card-input-wrapper">
+                <input
+                  type="text"
+                  id="cardNumber"
+                  name="cardNumber"
+                  placeholder="1234 5678 9012 3456"
+                  maxlength="19"
+                  required
+                />
+                <div class="card-icons">
+                  <i class="fab fa-cc-visa"></i>
+                  <i class="fab fa-cc-mastercard"></i>
+                  <i class="fab fa-cc-amex"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="expiryDate">Expiry Date</label>
+                <input
+                  type="text"
+                  id="expiryDate"
+                  name="expiryDate"
+                  placeholder="MM/YY"
+                  maxlength="5"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input
+                  type="text"
+                  id="cvv"
+                  name="cvv"
+                  placeholder="123"
+                  maxlength="4"
+                  required
+                />
+                <div class="cvv-hint">
+                  <i class="fas fa-question-circle"></i>
+                  <span class="hint-text"
+                    >3 or 4 digit code on the back of your card</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section order-summary">
+            <h3>Order Summary</h3>
+            <div class="summary-row">
+              <span id="ticketTypeDisplay">No ticket selected</span>
+              <span id="ticketPriceDisplay">$0.00</span>
+            </div>
+            <div class="summary-row">
+              <span>Processing Fee</span>
+              <span id="processingFee">$0.00</span>
+            </div>
+            <div class="summary-row total">
+              <span>Total</span>
+              <span id="totalPrice">$0.00</span>
+            </div>
+
+            <div class="form-group terms">
+              <input type="checkbox" id="terms" name="terms" required />
+              <label for="terms"
+                >I agree to the <a href="#">Terms and Conditions</a> and
+                <a href="#">Privacy Policy</a></label
+              >
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            id="submitPayment"
+            class="payment-button"
+            disabled
+          >
+            Complete Purchase
+          </button>
+        </form>
       </div>
     </div>
 
@@ -103,5 +297,6 @@
     <script src="background.js"></script>
     <script src="nav.js"></script>
     <script src="product.js"></script>
+    <script src="payment.js"></script>
   </body>
 </html>

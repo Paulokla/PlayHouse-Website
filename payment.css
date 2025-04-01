@@ -1,0 +1,300 @@
+/* Payment Page Styles */
+:root {
+    --primary-blue: #1e40af;
+    --secondary-blue: #3b82f6;
+    --accent-black: #000000;
+    --white: #ffffff;
+    --light-gray: #f3f4f6;
+    --medium-gray: #d1d5db;
+    --dark-gray: #6b7280;
+    --error-red: #ef4444;
+    --success-green: #10b981;
+  }
+  
+  .active-nav {
+    background-color: var(--primary-blue);
+    color: var(--white);
+  }
+  
+  /* Ticket Selection */
+  .ticket-selection {
+    margin-bottom: 30px;
+  }
+  
+  .tickets-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .ticket-card {
+    background-color: var(--white);
+    border: 2px solid var(--medium-gray);
+    border-radius: 10px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .ticket-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--secondary-blue);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ticket-card.selected {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 2px var(--secondary-blue);
+  }
+  
+  .ticket-card h4 {
+    color: var(--primary-blue);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+  }
+  
+  .ticket-price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: var(--accent-black);
+  }
+  
+  .ticket-features {
+    list-style: none;
+    margin-bottom: 20px;
+  }
+  
+  .ticket-features li {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .ticket-features i {
+    color: var(--success-green);
+    margin-right: 8px;
+    margin-top: 3px;
+  }
+  
+  .select-ticket-btn {
+    background-color: var(--white);
+    color: var(--primary-blue);
+    border: 2px solid var(--primary-blue);
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+    width: 100%;
+  }
+  
+  .select-ticket-btn:hover {
+    background-color: var(--primary-blue);
+    color: var(--white);
+  }
+  
+  .ticket-card.selected .select-ticket-btn {
+    background-color: var(--primary-blue);
+    color: var(--white);
+  }
+  
+  .featured-badge {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    background-color: var(--primary-blue);
+    color: var(--white);
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    border-radius: 20px;
+    font-weight: bold;
+  }
+  
+  /* Payment Form */
+  .payment-form {
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  }
+  
+  .form-section {
+    padding: 20px;
+    border-bottom: 1px solid var(--medium-gray);
+  }
+  
+  .form-section:last-of-type {
+    border-bottom: none;
+  }
+  
+  .form-section h3 {
+    margin-bottom: 20px;
+    color: var(--primary-blue);
+    font-size: 1.2rem;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+  }
+  
+  .form-group {
+    flex: 1;
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: var(--accent-black);
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="tel"] {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid var(--medium-gray);
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+  }
+  
+  .form-group input:focus {
+    border-color: var(--secondary-blue);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+  }
+  
+  .card-input-wrapper {
+    position: relative;
+  }
+  
+  .card-icons {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 5px;
+  }
+  
+  .card-icons i {
+    font-size: 1.2rem;
+    color: var(--dark-gray);
+  }
+  
+  .cvv-hint {
+    position: relative;
+    display: inline-block;
+    margin-left: 5px;
+  }
+  
+  .cvv-hint i {
+    color: var(--dark-gray);
+    cursor: pointer;
+  }
+  
+  .hint-text {
+    position: absolute;
+    width: 200px;
+    background-color: var(--accent-black);
+    color: var(--white);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 5px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    z-index: 10;
+  }
+  
+  .cvv-hint:hover .hint-text {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* Order Summary */
+  .order-summary {
+    background-color: var(--light-gray);
+  }
+  
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 5px 0;
+  }
+  
+  .summary-row.total {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--medium-gray);
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  .terms {
+    margin-top: 20px;
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .terms input {
+    margin-top: 3px;
+    margin-right: 10px;
+  }
+  
+  .terms a {
+    color: var(--primary-blue);
+    text-decoration: none;
+  }
+  
+  .terms a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Payment Button */
+  .payment-button {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    transition: all 0.3s;
+  }
+  
+  .payment-button:hover:not(:disabled) {
+    background-color: #153d8a;
+    transform: translateY(-2px);
+  }
+  
+  .payment-button:disabled {
+    background-color: var(--medium-gray);
+    cursor: not-allowed;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .form-row {
+      flex-direction: column;
+      gap: 0;
+    }
+    
+    .tickets-container {
+      grid-template-columns: 1fr;
+    }
+  }

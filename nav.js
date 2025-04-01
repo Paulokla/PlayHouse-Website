@@ -1,7 +1,7 @@
 // Page Navigation
 function changePage(pageId) {
   // Hide all pages
-  var pages = ["home", "about", "products"];
+  var pages = ["home", "about", "products", "tickets"];
   for (var i = 0; i < pages.length; i++) {
     var pageElement = document.getElementById(pages[i] + "Page");
     pageElement.classList.remove("active");
