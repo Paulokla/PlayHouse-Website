@@ -38,7 +38,7 @@ const start = async () => {
   app.listen(port, () => {
     const appMessage =
       secret.NODE_ENV === "development"
-        ? `Trading-Bot Server is running on http://127.0.0.1:${port}`
+        ? `Play House Server is running on http://127.0.0.1:${port}`
         : "App is live!";
 
     console.log(appMessage);
